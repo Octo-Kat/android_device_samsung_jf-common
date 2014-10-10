@@ -81,6 +81,9 @@ on early-boot
     chmod 0664 /sys/class/graphics/fb1/format_3d
     chmod 0664 /sys/class/graphics/fb1/video_mode
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
+    
+    # run sysinit
+    start sysinit
 
 on boot-pause
     exec system/bin/battery_charging
@@ -805,3 +808,7 @@ on charger
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
+
+    # sysinit (system/etc/init.d)
+    service sysinit /system/bin/sysinit
+     oneshot
